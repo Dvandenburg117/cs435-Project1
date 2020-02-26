@@ -1,0 +1,123 @@
+#Devin Vandenburg
+#CS435 Section006
+#Project 1 Coding Part
+#Language used : Python
+
+#1c
+def insertRec(root,node):
+  #empty tree
+  if root is None:
+    root = node
+  else:
+    #check if node goes in right subtree
+    if root.val < node.val:
+      #if right node doesnt exist
+      if root.right is None:
+        root.right = node
+      #if right node does exist
+      else:
+        insertRec(root.right,node)
+    #node must go in left subtree
+    else:
+      #if left node doesnt exist
+      if root.left is None:
+        root.left = node
+      else:
+        insertRec(root.left,node)
+
+def deleteRec(root,key):
+  #base
+  if root is None:
+    return root
+  #check to see which subtree the node is in
+  if key<root.key:
+    root.left = deleteRec(root.left,key)
+  elif key>root.key:
+    root.right = deleteRec(root.right,key)
+  #if we get here we found a match
+  else:
+    #deal with child nodes
+    if root.left is None:
+      temp = root.right
+      root = none
+      return temp
+    elif root.right is None:
+      temp = root.left
+      root = none
+      return temp
+
+def findMinRec(root):
+  #if min was found
+  if root.left is None:
+    return root.key
+  #otherwise keep searching left subtrees
+  else:
+    return findMinRec(root.left)
+    
+def findMaxRec(root):
+  #if max was found
+  if root.right is None:
+    return root.key
+  #other keep searching right subtrees
+  else:
+    return findMaxRec(root.right)
+    
+def findMin(node):
+  current = node
+  #keep traversing to the left
+  while current.left is not None:
+    current = current.left
+  return current
+
+def findMax(node):
+  current = node
+  #keep traversing to the right
+  while current.right is not None:
+    current = current.right
+  return current
+  
+#2c
+def sort(root):
+  lst = []
+  #Traverse through the tree using postorder traversal
+  if root:
+    sort(root.left)
+    #Add node values to list while traversing
+    lst.append(root.val)
+    sort(root.right)
+  #calling native python sort, not the one used in the problem - sort the returned list
+  lst.sort()
+  #print contents of list
+  for num in lst:
+    print(num)
+    
+#3a
+def getRandomArray(n):
+  lst = []
+  #making sure lst is of size n
+  while len(lst) != n:
+    #generate random number from 0 to n*2 for runtimes sake
+    x = random.random(0,n*2);
+    #check for duplicates
+    if (contains(lst.x)):
+      continue
+    else:
+      lst.append(x)
+  return lst
+def contains(lst,x):
+  for num in lst:
+    if num == x:
+      return true
+  return false
+  
+#3b
+def getSortedArray(n):
+  lst = []
+  x = n
+  #making sure size of list is n
+  while len(lst) != n;
+    #adding to list then decrementing
+    lst.append(x)
+    x = x-1
+  return lst
+    
